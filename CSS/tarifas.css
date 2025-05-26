@@ -1,0 +1,255 @@
+/* Paleta de colores */
+:root {
+  --color-gris: #B4BEC9;
+  --color-turquesa: #159A9C;
+  --color-azul-oscuro: #002333;
+  --color-verde-claro: #DEEFE7;
+  --color-blanco: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--color-verde-claro);
+  color: var(--color-azul-oscuro);
+  width: 100%;
+}
+
+.encabezado {
+  background-color: var(--color-turquesa);
+  padding: 30px 50px; /* más alto */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contenedor-logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-blanco);
+}
+
+.titulo-sitio {
+  font-size: 2.2rem; /* título más grande */
+  color: var(--color-blanco);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.navegacion {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.navegacion a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-size: 1.2rem; /* MÁS GRANDE */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+
+
+.navegacion a:hover,
+.navegacion a.activo {
+  background-color: var(--color-blanco);
+  color: var(--color-turquesa);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navegacion {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .titulo-sitio {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    text-align: center;
+    color: #00897b;
+    margin-bottom: 30px;
+}
+
+.tariff-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tariff-title {
+    color: #00897b;
+    border-bottom: 2px solid #00897b;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.tariff-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tariff-table th, .tariff-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tariff-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.tariff-table tr:last-child td {
+    border-bottom: none;
+}
+
+.note {
+    background-color: #fff8e1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid #ffc107;
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+/*footer*/
+.footer {
+  background:var(--color-turquesa);
+  color: #ffffff;
+  padding: 50px 20px 20px;
+  font-size: 0.85rem;
+}
+
+.footer-contenedor {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.footer h3,
+.footer h4 {
+   color: #b2dfdb;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer p {
+  color: #e0f2f1;
+  margin: 8px 0;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #80cbc4;
+}
+
+.footer-redes .iconos-redes {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-redes .iconos-redes a {
+  background: #00796b;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-redes .iconos-redes a:hover {
+  transform: scale(1.2);
+  color: white;
+}
+
+/* Colores individuales al hacer hover */
+.footer-redes .facebook:hover {
+  background-color: #3b5998;
+}
+
+.footer-redes .instagram:hover {
+  background-color: #e1306c;
+}
+
+.footer-redes .youtube:hover {
+  background-color: #ff0000;
+}
+
+.footer-redes .whatsapp:hover {
+  background-color: #25d366;
+}
+
+.footer-contacto i {
+  margin-right: 8px;
+  color: #b2dfdb;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

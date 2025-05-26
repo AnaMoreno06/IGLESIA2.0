@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministerios - Palabra del Día</title>
+    <link rel="stylesheet" href="../CSS/palabra.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor-logo">
+            <img src="../img/logo.jpg" alt="Logo Iglesia" class="logo" />
+            <h1 class="titulo-sitio">Iglesia Santa Lucía</h1>
+        </div>
+        <nav class="navegacion">
+            <a href="../index.html">Inicio</a>
+            <a href="Novedades.html">Novedades</a>
+            <a href="Palabra.html" class="activo">Palabra del día</a>
+            <a href="Tarifas.html">Tarifas</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <h1 class="page-title">Palabra del Día</h1>
+        
+        <div class="verse-container">
+            <div class="daily-verse" id="verse-text">
+                "Cargando versículo del día..."
+            </div>
+            <div class="verse-reference" id="verse-reference">
+                
+            </div>
+            <div class="verse-actions">
+                <button class="verse-button" id="new-verse-btn">
+                    <span class="verse-icon">🔄</span>
+                    Nueva cita
+                </button>
+                <button class="verse-button" id="share-verse-btn">
+                    <span class="verse-icon">📤</span>
+                    Compartir
+                </button>
+                <button class="verse-button" id="save-verse-btn">
+                    <span class="verse-icon">❤️</span>
+                    Guardar
+                </button>
+                <button class="verse-button" id="favorites-btn">
+                    <span class="verse-icon">⭐</span>
+                    Ver Favoritos
+                </button>
+            </div>
+        </div>
+        
+        <div id="loading">
+            <div class="loading-spinner"></div>
+            <p>Buscando palabra de Dios...</p>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;">
+            <p>Error al cargar el versículo. Intentando de nuevo...</p>
+        </div>
+        
+        <!-- Modal de Favoritos -->
+        <div id="favorites-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Versículos Favoritos</h2>
+                <div id="favorites-list">
+                    
+                    <!-- Los favoritos se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="categories-title">Explorar por Categorías</h2>
+        <div class="categories-container">
+            <div class="category-card" data-category="love">
+                <div class="category-icon">❤️</div>
+                <h3 class="category-title">Amor</h3>
+                <p class="category-description">Versículos que hablan del amor de Dios y del amor al prójimo.</p>
+            </div>
+            
+            <div class="category-card" data-category="faith">
+                <div class="category-icon">✝️</div>
+                <h3 class="category-title">Fe</h3>
+                <p class="category-description">Versículos que fortalecen nuestra fe y confianza en Dios.</p>
+            </div>
+            
+            <div class="category-card" data-category="hope">
+                <div class="category-icon">⚓</div>
+                <h3 class="category-title">Esperanza</h3>
+                <p class="category-description">Versículos que nos recuerdan las promesas de Dios.</p>
+            </div>
+            
+            <div class="category-card" data-category="strength">
+                <div class="category-icon">💪</div>
+                <h3 class="category-title">Fortaleza</h3>
+                <p class="category-description">Versículos para momentos difíciles y de prueba.</p>
+            </div>
+            
+            <div class="category-card" data-category="family">
+                <div class="category-icon">👨‍👩‍👧‍👦</div>
+                <h3 class="category-title">Familia</h3>
+                <p class="category-description">Versículos sobre la vida familiar y las relaciones.</p>
+            </div>
+            
+            <div class="category-card" data-category="prayer">
+                <div class="category-icon">🙏</div>
+                <h3 class="category-title">Oración</h3>
+                <p class="category-description">Versículos que nos guían en nuestra comunicación con Dios.</p>
+            </div>
+        </div>
+        
+        
+    
+        
+        <div class="history-section">
+            <h2 class="history-title">Últimas Citas Mostradas</h2>
+            <div class="history-cards" id="verse-history">
+                <!-- El historial se generará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-contenedor">
+            <div class="footer-info">
+                <h3>Iglesia Santa Lucía</h3>
+                <p>Un espacio de encuentro, fe y esperanza para toda la familia.</p>
+            </div>
+
+            <div class="footer-redes">
+                <h4>Síguenos</h4>
+                <div class="iconos-redes">
+                    <a href="https://www.facebook.com/profile.php?id=100090503985841&sk=about" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/keylyovad/" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@keylyjohanaovallosdiaz3690" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-contacto">
+                <h4>Contáctanos</h4>
+                <p><i class="fas fa-envelope"></i> iglesiasantalucia@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 3105842146</p>
+                <p><i class="fas fa-map-marker-alt"></i>cl 14 #904,Br. Mariano Ospina Pérez,Cúcuta,Norte de santander</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JS/Palabra.js"></script>
+</body>
+</html>

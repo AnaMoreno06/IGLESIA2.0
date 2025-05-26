@@ -1,0 +1,286 @@
+/* Paleta de colores */
+:root {
+  --color-gris: #B4BEC9;
+  --color-turquesa: #159A9C;
+  --color-azul-oscuro: #002333;
+  --color-verde-claro: #DEEFE7;
+  --color-blanco: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--color-verde-claro);
+  color: var(--color-azul-oscuro);
+  width: 100%;
+}
+
+.encabezado {
+  background-color: var(--color-turquesa);
+  padding: 30px 50px; /* más alto */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contenedor-logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-blanco);
+}
+
+.titulo-sitio {
+  font-size: 2.2rem; /* título más grande */
+  color: var(--color-blanco);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.navegacion {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.navegacion a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-size: 1.2rem; /* MÁS GRANDE */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+
+
+.navegacion a:hover,
+.navegacion a.activo {
+  background-color: var(--color-blanco);
+  color: var(--color-turquesa);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navegacion {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .titulo-sitio {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/*las tarjetas*/
+
+.ministerios {
+  background-color: #e0f2f1; /* color suave */
+  padding: 60px 20px;
+}
+
+.contenedor-tarjetas {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.tarjeta {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 15px;
+}
+
+.tarjeta h3 {
+  color: #007f89; }
+
+/*eventos*/
+
+.eventos {
+  background: linear-gradient(to right, #e0f2f1, #f7f9fa);
+  padding: 60px 20px;
+}
+
+.titulo-seccion {
+  text-align: center;
+  font-size: 2rem;
+  color: #007f89;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.lista-eventos {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.evento {
+  display: flex;
+  background-color: #fff;
+  border-left: 5px solid #b39ddb;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+}
+
+.fecha {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 60px;
+}
+
+.fecha .dia {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.fecha .mes {
+  font-size: 0.9rem;
+}
+
+.detalle h3 {
+  font-size: 1.3rem;
+  color: #007f89;
+  margin: 0;
+}
+
+.detalle p {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+/*footer*/
+
+.footer {
+  background:var(--color-turquesa);
+  color: #ffffff;
+  padding: 50px 20px 20px;
+  font-size: 0.85rem;
+}
+
+.footer-contenedor {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.footer h3,
+.footer h4 {
+   color: #b2dfdb;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer p {
+  color: #e0f2f1;
+  margin: 8px 0;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #80cbc4;
+}
+
+.footer-redes .iconos-redes {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-redes .iconos-redes a {
+  background: #00796b;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-redes .iconos-redes a:hover {
+  transform: scale(1.2);
+  color: white;
+}
+
+/* Colores individuales al hacer hover */
+.footer-redes .facebook:hover {
+  background-color: #3b5998;
+}
+
+.footer-redes .instagram:hover {
+  background-color: #e1306c;
+}
+
+.footer-redes .youtube:hover {
+  background-color: #ff0000;
+}
+
+.footer-redes .whatsapp:hover {
+  background-color: #25d366;
+}
+
+.footer-contacto i {
+  margin-right: 8px;
+  color: #b2dfdb;
+}
+
+
