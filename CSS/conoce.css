@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -22,7 +22,8 @@ body {
 
 .encabezado {
   background-color: var(--color-turquesa);
-  padding: 30px 50px; /* más alto */
+  padding: 30px 50px;
+  /* más alto */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +45,8 @@ body {
 }
 
 .titulo-sitio {
-  font-size: 2.2rem; /* título más grande */
+  font-size: 2.2rem;
+  /* título más grande */
   color: var(--color-blanco);
   text-transform: uppercase;
   font-weight: bold;
@@ -62,7 +64,8 @@ body {
   padding: 12px 24px;
   border-radius: 30px;
   transition: all 0.3s ease;
-  font-size: 1.2rem; /* MÁS GRANDE */
+  font-size: 1.2rem;
+  /* MÁS GRANDE */
   font-weight: bold;
   letter-spacing: 0.5px;
 }
@@ -97,6 +100,7 @@ body {
     height: 60px;
   }
 }
+
 .inicio-seccion {
   background: linear-gradient(to bottom right, #dff7f5, #f0fdfc);
   padding: 60px 20px;
@@ -131,51 +135,253 @@ body {
   align-items: flex-start;
 }
 
-.foto-iglesia img,
-.tarjeta-sacerdote img {
-  width: 500px;
-  height: auto;
-  border-radius: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
+.timeline-section {
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
 
-.etiqueta {
-  margin-top: 30px;
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #40B2A6, #2E8B7B);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-content {
+  width: 45%;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+  right: -30px;
+  border-left-color: white;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+  left: -30px;
+  border-right-color: white;
+}
+
+.timeline-year {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #40B2A6, #2E8B7B);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 25px;
   font-weight: bold;
-  color: #666;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(64, 178, 166, 0.3);
+  z-index: 2;
 }
 
-.tarjeta-sacerdote {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 28px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  max-width: 600px;
+.timeline-title {
+  color: #40B2A6;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.timeline-text {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* Pastors Section */
+.pastors-section {
+  background: white;
+  padding: 4rem 2rem;
+  margin: 4rem 0;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pastors-title {
   text-align: center;
+  font-size: 2.5rem;
+  color: #40B2A6;
+  margin-bottom: 3rem;
+  font-weight: 300;
 }
 
-.tarjeta-sacerdote h3 {
-  margin-top: 20px;
-  color: #159e9f;
+.pastors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.tarjeta-sacerdote p {
-  font-size: 1rem;
-  color: #333;
-  margin: 30px 0;
+.pastor-card {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
+.pastor-card:hover {
+  transform: translateY(-5px);
+}
 
+.pastor-name {
+  color: #40B2A6;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.pastor-period {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.pastor-description {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Legacy Section */
+.legacy-section {
+  background: linear-gradient(135deg, #40B2A6, #2E8B7B);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.legacy-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.legacy-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* Back Button */
+.back-button {
+  position: fixed;
+  top: 100px;
+  left: 2rem;
+  background: linear-gradient(135deg, #40B2A6, #2E8B7B);
+  color: white;
+  padding: 1rem;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(64, 178, 166, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(64, 178, 166, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+  }
+
+  .timeline-content {
+    width: 100%;
+    margin-left: 60px;
+  }
+
+  .timeline-content::before {
+    left: -30px !important;
+    border-right-color: white !important;
+    border-left-color: transparent !important;
+  }
+
+  .timeline-year {
+    left: 30px;
+    transform: translateX(-50%);
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .back-button {
+    top: 80px;
+    left: 1rem;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 
 /* Animación al cargar */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .footer {
-  background:var(--color-turquesa);
+  background: var(--color-turquesa);
   color: #ffffff;
   padding: 50px 20px 20px;
   font-size: 0.85rem;
@@ -191,7 +397,7 @@ body {
 
 .footer h3,
 .footer h4 {
-   color: #b2dfdb;
+  color: #b2dfdb;
   margin-bottom: 15px;
   font-weight: bold;
 }
@@ -253,9 +459,3 @@ body {
   margin-right: 8px;
   color: #b2dfdb;
 }
-
-
-
-
-
-
