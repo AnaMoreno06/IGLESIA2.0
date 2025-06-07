@@ -80,81 +80,68 @@
   <!-- Modal para agregar evento -->
 <!-- Modal para editar evento -->
 <!-- Modal para editar evento -->
-<div id="modal-editar-evento" style="
-  display:none; 
-  position: fixed; 
-  top:0; 
-  left:0; 
-  width:100%; 
-  height:100%; 
-  background: rgba(0,0,0,0.5); 
-  z-index:1000; 
-  justify-content:center; 
+<!-- Modal para agregar evento -->
+<div id="modal-agregar-evento" style="
+  display:none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.5);
+  z-index:1000;
+  justify-content:center;
   align-items:center;
   font-family: 'Segoe UI', sans-serif;
 ">
   <div style="
-    background: #fff; 
-    padding: 30px; 
-    border-radius: 16px; 
-    width: 90%; 
-    max-width: 520px; 
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 520px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     position: relative;
   ">
-    <!-- Botón de cerrar -->
-    <button onclick="cerrarModalEditar()" style="
-      position: absolute; 
-      top: 12px; 
-      right: 12px; 
-      background: transparent; 
-      border: none; 
-      font-size: 22px; 
+    <button onclick="cerrarModalAgregar()" style="
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 22px;
       cursor: pointer;
       color: #888;
-    " title="Cerrar">✖️</button>
+    ">✖️</button>
 
-    <h2 style="margin-bottom: 20px; color: #333;">✏️ Editar Evento</h2>
+    <h2 style="margin-bottom: 20px; color: #333;">➕ Agregar Evento</h2>
 
-    <form id="form-editar-evento">
-      <input type="hidden" name="id" id="editar-id">
+    <form id="form-agregar-evento">
+      <label>Título:</label><br/>
+      <input type="text" id="nuevo-titulo" required style="width: 100%; margin-bottom: 10px;"><br/>
 
-      <label style="font-weight: 600;">Título:</label><br/>
-      <input type="text" name="titulo" id="editar-titulo" required style="width: 100%; margin-bottom: 14px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"><br/>
+      <label>Descripción:</label><br/>
+      <textarea id="nueva-descripcion" required style="width: 100%; margin-bottom: 10px;"></textarea><br/>
 
-      <label style="font-weight: 600;">Descripción:</label><br/>
-      <textarea name="descripcion" id="editar-descripcion" required rows="3" style="width: 100%; margin-bottom: 14px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"></textarea><br/>
+      <label>Fecha:</label><br/>
+      <input type="date" id="nueva-fecha" required style="width: 100%; margin-bottom: 10px;"><br/>
 
-      <label style="font-weight: 600;">Fecha:</label><br/>
-      <input type="date" name="fecha" id="editar-fecha" required style="width: 100%; margin-bottom: 14px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"><br/>
+      <label>Hora:</label><br/>
+      <input type="time" id="nueva-hora" required style="width: 100%; margin-bottom: 20px;"><br/>
 
-      <label style="font-weight: 600;">Hora:</label><br/>
-      <input type="time" name="hora" id="editar-hora" required style="width: 100%; margin-bottom: 20px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"><br/>
-
-      <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button type="submit" style="
-          background: #007bff; 
-          color: white; 
-          padding: 10px 20px; 
-          border: none; 
-          border-radius: 6px; 
-          font-size: 16px;
-          cursor: pointer;
-        ">💾 Guardar Cambios</button>
-
-        <button type="button" onclick="cerrarModalEditar()" style="
-          background: #ccc; 
-          color: #333; 
-          padding: 10px 20px; 
-          border: none; 
-          border-radius: 6px; 
-          font-size: 16px;
-          cursor: pointer;
-        ">Cancelar</button>
-      </div>
+      <button type="submit" style="
+        background: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      ">Guardar Evento</button>
     </form>
   </div>
 </div>
+
 
 
 

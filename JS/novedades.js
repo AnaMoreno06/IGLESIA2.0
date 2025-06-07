@@ -60,10 +60,14 @@ async function cargarEventosFirebase() {
           <h3>${evento.titulo || 'Sin título'}</h3>
           <p class="fecha">${fechaTexto}</p>
           <p>${evento.descripcion || 'Sin descripción'}</p>
-          <div style="margin-top:10px;">
-            <button onclick="editarEvento('${doc.id}')">✏️ Editar</button>
-            <button onclick="eliminarEvento('${doc.id}')" style="background:red;color:white;">🗑️ Eliminar</button>
-          </div>
+          ${esAdmin ? `
+  <div style="margin-top:10px;">
+    <button onclick="editarEvento('${doc.id}')">✏️ Editar</button>
+    <button onclick="eliminarEvento('${doc.id}')" style="background:red;color:white;">🗑️ Eliminar</button>
+  </div>
+` : ''}
+
+
         </div>
       `;
     });
@@ -108,6 +112,31 @@ function eliminarEvento(id) {
 function agregarEventoRapido() {
   document.getElementById("modal-agregar-evento").style.display = "flex";
 }
+document.getElementById("form-agregar-evento").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const titulo = document.getElementById("nuevo-titulo").value;
+  const descripcion = document.getElementById("nueva-descripcion").value;
+  const fecha = document.getElementById("nueva-fecha").value;
+  const hora = document.getElementById("nueva-hora").value;
+
+  try {
+    await db.collection("eventos").add({
+      titulo,
+      descripcion,
+      fecha: new Date(`${fecha}T${hora}`)
+    });
+    alert("✅ Evento agregado con éxito");
+    cerrarModalAgregar();
+    cargarEventosFirebase();
+  } catch (e) {
+    alert("❌ Error al agregar el evento: " + e.message);
+  }
+});
+
+function cerrarModalAgregar() {
+  document.getElementById("modal-agregar-evento").style.display = "none";
+}
 
 function cerrarSesionAdmin() {
   auth.signOut().then(() => {
@@ -134,4 +163,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     cargarEventosFirebase();
   });
+
+  auth.onAuthStateChanged(user => {
+  if (user && user.email === "keylyovadi@gmail.com") {
+    console.log("✅ Usuario administrador:", user.email);
+    esAdmin = true;
+    mostrarPanelAdmin();
+  } else {
+    console.log("❌ No autenticado o no es admin");
+    esAdmin = false;
+  }
+  cargarEventosFirebase();
+});
+
 });
