@@ -17,6 +17,9 @@ let esAdmin = false;
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+let idEventoAEliminar = null;
+
+
 
 // Mostrar panel si es administrador
 function mostrarPanelAdmin() {
@@ -27,13 +30,24 @@ function mostrarPanelAdmin() {
   const panelAdmin = document.createElement("div");
   panelAdmin.className = "admin-panel";
   panelAdmin.innerHTML = `
-    <h3>👨‍💼 Panel de Administración</h3>
-    <button onclick="abrirEditorEventos()">✏️ Editar Eventos</button>
-    <button onclick="agregarEventoRapido()" style="margin-left:10px;">➕ Agregar Evento</button>
-    <button onclick="cerrarSesionAdmin()" style="margin-left:10px;background:red;color:white;">🚪 Cerrar Sesión</button>
+    <div class="admin-panel-inner">
+      <h3>👨‍💼 Panel de Administración</h3>
+      <div class="botones-admin">
+      
+        <button onclick="agregarEventoRapido()">➕ Agregar Evento</button>
+        <button onclick="cerrarSesionAdmin()" class="btn-cerrar">🚪 Cerrar Sesión</button>
+      </div>
+    </div>
   `;
+
+  // Agrega estilos modernos
+ const estilo = document.createElement("style");
+estilo.textContent = ` ... `;
+document.head.appendChild(estilo);
+
   seccionEventos.insertBefore(panelAdmin, seccionEventos.firstChild);
 }
+
 
 // Cargar eventos desde Firebase
 async function cargarEventosFirebase() {
@@ -55,21 +69,25 @@ async function cargarEventosFirebase() {
         year: 'numeric', month: 'long', day: 'numeric'
       });
 
-      html += `
-        <div class="evento-item" style="border:1px solid #ccc;padding:15px;margin:10px 0;border-radius:10px;">
-          <h3>${evento.titulo || 'Sin título'}</h3>
-          <p class="fecha">${fechaTexto}</p>
-          <p>${evento.descripcion || 'Sin descripción'}</p>
-          ${esAdmin ? `
-  <div style="margin-top:10px;">
-    <button onclick="editarEvento('${doc.id}')">✏️ Editar</button>
-    <button onclick="eliminarEvento('${doc.id}')" style="background:red;color:white;">🗑️ Eliminar</button>
+    html += `
+  <div class="evento-card">
+    <div class="evento-header">
+      <h3>${evento.titulo || 'Sin título'}</h3>
+      <span class="evento-fecha">${fecha.toLocaleDateString('es-ES', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      })}</span>
+      <span class="evento-hora">${fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })} hs</span>
+    </div>
+    <p class="evento-descripcion">${evento.descripcion || 'Sin descripción'}</p>
+    ${esAdmin ? `
+      <div class="evento-controles">
+        <button onclick="editarEvento('${doc.id}')">✏️ Editar</button>
+        <button onclick="eliminarEvento('${doc.id}')" class="btn-eliminar">🗑️ Eliminar</button>
+      </div>
+    ` : ''}
   </div>
-` : ''}
+`;
 
-
-        </div>
-      `;
     });
 
     loading.style.display = 'none';
@@ -81,33 +99,76 @@ async function cargarEventosFirebase() {
   }
 }
 
+
 function editarEvento(id) {
   db.collection('eventos').doc(id).get().then(doc => {
     if (!doc.exists) return alert("Evento no encontrado");
     const data = doc.data();
-    const nuevoTitulo = prompt("✏️ Nuevo título:", data.titulo);
-    if (nuevoTitulo === null) return;
-    const nuevaDescripcion = prompt("📝 Nueva descripción:", data.descripcion);
-    if (nuevaDescripcion === null) return;
 
-    db.collection('eventos').doc(id).update({
-      titulo: nuevoTitulo,
-      descripcion: nuevaDescripcion
-    }).then(() => {
-      alert("✅ Evento actualizado");
-      cargarEventosFirebase();
-    });
+    document.getElementById("editar-id").value = id;
+    document.getElementById("editar-titulo").value = data.titulo;
+    document.getElementById("editar-descripcion").value = data.descripcion;
+
+    document.getElementById("modal-editar-evento").style.display = "flex";
   });
 }
 
+
 function eliminarEvento(id) {
-  if (confirm("¿Eliminar este evento?")) {
-    db.collection('eventos').doc(id).delete().then(() => {
-      alert("✅ Evento eliminado");
-      cargarEventosFirebase();
-    });
-  }
+  idEventoAEliminar = id;
+  document.getElementById("modal-confirmar-eliminar").style.display = "flex";
 }
+async function confirmarEliminar() {
+  if (!idEventoAEliminar) return;
+
+  try {
+    await db.collection("eventos").doc(idEventoAEliminar).delete();
+    alert("✅ Evento eliminado");
+    cerrarModalEliminar();
+    cargarEventosFirebase();
+  } catch (e) {
+    console.error("❌ Error al eliminar:", e);
+    alert("❌ No se pudo eliminar el evento");
+  }
+
+  idEventoAEliminar = null; // Limpiar
+}
+function cerrarModalEliminar() {
+  document.getElementById("modal-confirmar-eliminar").style.display = "none";
+  idEventoAEliminar = null;
+}
+
+
+document.getElementById("form-editar-evento").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const id = document.getElementById("editar-id").value;
+  const nuevoTitulo = document.getElementById("editar-titulo").value.trim();
+  const nuevaDescripcion = document.getElementById("editar-descripcion").value.trim();
+
+  if (!nuevoTitulo || !nuevaDescripcion) {
+    alert("Todos los campos son obligatorios");
+    return;
+  }
+
+  try {
+    await db.collection("eventos").doc(id).update({
+      titulo: nuevoTitulo,
+      descripcion: nuevaDescripcion
+    });
+    alert("✅ Evento actualizado");
+    cerrarModalEditar();
+    cargarEventosFirebase();
+  } catch (e) {
+    alert("❌ Error al actualizar: " + e.message);
+  }
+});
+
+
+function cerrarModalEditar() {
+  document.getElementById("modal-editar-evento").style.display = "none";
+}
+
 
 function agregarEventoRapido() {
   document.getElementById("modal-agregar-evento").style.display = "flex";
@@ -145,9 +206,7 @@ function cerrarSesionAdmin() {
   });
 }
 
-function abrirEditorEventos() {
-  window.location.href = "editar-eventos.html";
-}
+
 
 // Verifica el usuario actual
 document.addEventListener("DOMContentLoaded", () => {
