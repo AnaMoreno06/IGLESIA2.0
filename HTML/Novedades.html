@@ -77,10 +77,6 @@
   </section>
   
 
-  <!-- Modal para agregar evento -->
-<!-- Modal para editar evento -->
-<!-- Modal para editar evento -->
-<!-- Modal para agregar evento -->
 <div id="modal-agregar-evento" style="
   display:none;
   position: fixed;
@@ -142,6 +138,31 @@
   </div>
 </div>
 
+<!-- Modal para editar evento -->
+<div id="modal-editar-evento" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h2>✏️ Editar Evento</h2>
+    <form id="form-editar-evento">
+      <input type="text" id="editar-titulo" placeholder="Nuevo título" required><br><br>
+      <textarea id="editar-descripcion" placeholder="Nueva descripción" required></textarea><br><br>
+      <input type="hidden" id="editar-id">
+      <button type="submit">💾 Guardar Cambios</button>
+      <button type="button" onclick="cerrarModalEditar()">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal de Confirmación de Eliminación -->
+<div id="modal-confirmar-eliminar" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h3>🗑️ Confirmar Eliminación</h3>
+    <p>¿Estás seguro de que deseas eliminar este evento?</p>
+    <div style="text-align: right;">
+      <button onclick="confirmarEliminar()">✅ Sí, eliminar</button>
+      <button onclick="cerrarModalEliminar()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 
 

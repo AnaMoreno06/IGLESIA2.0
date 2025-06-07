@@ -277,6 +277,180 @@ body {
   background-color: #4e4fc4;
 }
 
+.admin-panel {
+  background: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-panel-inner h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.botones-admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.botones-admin button {
+  background: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.botones-admin button:hover {
+  background: #0056b3;
+}
+
+.botones-admin .btn-cerrar {
+  background: #dc3545 !important;
+}
+
+.botones-admin .btn-cerrar:hover {
+  background: #a71d2a !important;
+}
+
+/* Tarjeta de evento */
+.evento-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 8px solid #159A9C;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.evento-card:hover {
+  transform: scale(1.02);
+  background: #DEEFE7;
+}
+
+.evento-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.evento-header h3 {
+  font-size: 1.8em;
+  margin: 0;
+  color: #159A9C;
+  font-weight: 700;
+}
+
+.evento-fecha, .evento-hora {
+  font-size: 1.2em;
+  color: #002333;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.evento-descripcion {
+  font-size: 1em;
+  color: #2d3436;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.evento-controles {
+  display: flex;
+  gap: 10px;
+}
+
+.evento-controles button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.evento-controles button:hover {
+  opacity: 0.9;
+}
+
+.evento-controles button:first-child {
+  background-color: #74b9ff;
+  color: #fff;
+}
+
+.evento-controles .btn-eliminar {
+  background-color: #ff7675;
+  color: white;
+}
+
+
+.formulario-evento {
+  background: #fefefe;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: auto;
+}
+.formulario-evento input,
+.formulario-evento textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+  font-size: 1em;
+}
+.btn-guardar {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-cancelar {
+  background-color: #d63031;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 10000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
 
 /*footer*/
 
