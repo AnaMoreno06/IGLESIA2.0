@@ -1,4 +1,8 @@
-// Animación de entrada para las secciones de tarifas
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const secciones = document.querySelectorAll(".tariff-section");
 

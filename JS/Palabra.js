@@ -14,35 +14,77 @@ const categoryCards = document.querySelectorAll(".category-card");
 
 let currentVerse = null;
 let verseHistoryData = [];
+let versesByCategory = {}; 
 
-const versesByCategory = {
-  love: [
-    { text: "Amaos los unos a los otros como yo os he amado.", reference: "Juan 15:12" },
-    { text: "El amor es paciente, es bondadoso.", reference: "1 Corintios 13:4" },
-    { text: "Nadie tiene mayor amor que este, que uno ponga su vida por sus amigos.", reference: "Juan 15:13" }
-  ],
-  faith: [
-    { text: "La fe es la certeza de lo que se espera.", reference: "Hebreos 11:1" },
-    { text: "Confía en el Señor con todo tu corazón.", reference: "Proverbios 3:5" },
-    { text: "Porque por gracia sois salvos mediante la fe.", reference: "Efesios 2:8" }
-  ],
-  hope: [
-    { text: "Porque yo sé los planes que tengo para vosotros, planes de bienestar y no de mal.", reference: "Jeremías 29:11" },
-    { text: "Que el Dios de la esperanza os llene de gozo y paz.", reference: "Romanos 15:13" }
-  ],
-  strength: [
-    { text: "Todo lo puedo en Cristo que me fortalece.", reference: "Filipenses 4:13" },
-    { text: "El Señor es mi fortaleza y mi escudo.", reference: "Salmo 28:7" }
-  ],
-  family: [
-    { text: "Honra a tu padre y a tu madre.", reference: "Éxodo 20:12" },
-    { text: "El que encuentra esposa halla el bien.", reference: "Proverbios 18:22" }
-  ],
-  prayer: [
-    { text: "Orad sin cesar.", reference: "1 Tesalonicenses 5:17" },
-    { text: "Clama a mí y yo te responderé.", reference: "Jeremías 33:3" }
-  ]
-};
+
+async function loadVersesFromJSON() {
+  try {
+    console.log('Cargando versículos desde JSON...');
+ const response = await fetch('/categorias.json');
+
+
+    
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
+    }
+    
+    versesByCategory = await response.json();
+    console.log('Versículos cargados exitosamente:', Object.keys(versesByCategory));
+    
+   
+    enableCategoryCards();
+    
+    return true;
+  } catch (error) {
+    console.error('Error al cargar versículos:', error);
+    
+  
+    console.log('Usando versículos de respaldo...');
+    versesByCategory = {
+      love: [
+        { text: "Amaos los unos a los otros como yo os he amado.", reference: "Juan 15:12" },
+        { text: "El amor es paciente, es bondadoso.", reference: "1 Corintios 13:4" }
+      ],
+      faith: [
+        { text: "La fe es la certeza de lo que se espera.", reference: "Hebreos 11:1" },
+        { text: "Confía en el Señor con todo tu corazón.", reference: "Proverbios 3:5" }
+      ],
+      hope: [
+        { text: "Porque yo sé los planes que tengo para vosotros, planes de bienestar y no de mal.", reference: "Jeremías 29:11" }
+      ],
+      strength: [
+        { text: "Todo lo puedo en Cristo que me fortalece.", reference: "Filipenses 4:13" }
+      ],
+      family: [
+        { text: "Honra a tu padre y a tu madre.", reference: "Éxodo 20:12" }
+      ],
+      prayer: [
+        { text: "Orad sin cesar.", reference: "1 Tesalonicenses 5:17" }
+      ]
+    };
+    
+    enableCategoryCards();
+    return false;
+  }
+}
+
+
+function enableCategoryCards() {
+  categoryCards.forEach(card => {
+    card.style.opacity = '1';
+    card.style.pointerEvents = 'auto';
+    
+    
+    const category = card.dataset.category;
+    if (versesByCategory[category]) {
+      const countElement = card.querySelector('.verse-count');
+      if (countElement) {
+        countElement.textContent = `${versesByCategory[category].length} versículos`;
+      }
+    }
+  });
+}
+
 
 async function fetchRandomVerse() {
   loading.style.display = "block";
@@ -50,122 +92,320 @@ async function fetchRandomVerse() {
 
   try {
     const response = await fetch("https://labs.bible.org/api/?passage=random&type=json");
+    
+    if (!response.ok) {
+      throw new Error(`Error de red: ${response.status}`);
+    }
+    
     const data = await response.json();
 
-    if (data.length === 0) throw new Error("Sin datos");
+    if (!data || data.length === 0) {
+      throw new Error("Sin datos de la API");
+    }
 
     const verse = data[0];
     const verseTextContent = verse.text;
     const reference = `${verse.bookname} ${verse.chapter}:${verse.verse}`;
 
-    verseText.textContent = `"${verseTextContent}"`;
-    verseReference.textContent = reference;
+    displayVerse(verseTextContent, reference);
     currentVerse = { text: verseTextContent, reference };
 
     addToHistory(currentVerse);
   } catch (error) {
-    errorMessage.style.display = "block";
-    verseText.textContent = "No se pudo cargar el versículo.";
-    verseReference.textContent = "";
-    currentVerse = null;
+    console.error('Error al obtener versículo de la API:', error);
+    
+
+    loadRandomLocalVerse();
   } finally {
     loading.style.display = "none";
   }
 }
 
+
+function loadRandomLocalVerse() {
+  const categories = Object.keys(versesByCategory);
+  if (categories.length === 0) {
+    showError("No se pudieron cargar los versículos.");
+    return;
+  }
+
+  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+  loadVerseByCategory(randomCategory);
+}
+
+
 function loadVerseByCategory(category) {
-  if (!versesByCategory[category]) {
-    verseText.textContent = "Categoría no encontrada.";
-    verseReference.textContent = "";
+  if (!versesByCategory[category] || versesByCategory[category].length === 0) {
+    showError("Categoría no encontrada o vacía.");
     return;
   }
 
   const verses = versesByCategory[category];
   const verse = verses[Math.floor(Math.random() * verses.length)];
 
-  verseText.textContent = `"${verse.text}"`;
-  verseReference.textContent = verse.reference;
+  displayVerse(verse.text, verse.reference);
   currentVerse = verse;
 
   addToHistory(currentVerse);
+  
+ 
+  highlightSelectedCategory(category);
 }
 
+
+function displayVerse(text, reference) {
+  verseText.textContent = `"${text}"`;
+  verseReference.textContent = reference;
+  
+ 
+  verseText.style.opacity = '0';
+  verseReference.style.opacity = '0';
+  
+  setTimeout(() => {
+    verseText.style.opacity = '1';
+    verseReference.style.opacity = '1';
+  }, 100);
+}
+
+
+function showError(message) {
+  errorMessage.style.display = "block";
+  errorMessage.textContent = message;
+  verseText.textContent = "No se pudo cargar el versículo.";
+  verseReference.textContent = "";
+  currentVerse = null;
+}
+
+
+function highlightSelectedCategory(selectedCategory) {
+  categoryCards.forEach(card => {
+    if (card.dataset.category === selectedCategory) {
+      card.classList.add('selected');
+      setTimeout(() => card.classList.remove('selected'), 2000);
+    }
+  });
+}
+
+
 function addToHistory(verse) {
+  
+  if (verseHistoryData.length > 0 && 
+      verseHistoryData[0].text === verse.text && 
+      verseHistoryData[0].reference === verse.reference) {
+    return;
+  }
+
   verseHistoryData.unshift(verse);
   if (verseHistoryData.length > 5) verseHistoryData.pop();
 
+  updateHistoryDisplay();
+}
+
+
+function updateHistoryDisplay() {
+  if (!verseHistory) return;
+
   verseHistory.innerHTML = "";
-  verseHistoryData.forEach(v => {
+  verseHistoryData.forEach((v, index) => {
     const card = document.createElement("div");
-    card.innerHTML = `<p>"${v.text}"</p><small>${v.reference}</small>`;
+    card.className = 'history-card';
+    card.innerHTML = `
+      <p class="history-text">"${v.text}"</p>
+      <small class="history-reference">${v.reference}</small>
+    `;
+    
+    
+    card.addEventListener('click', () => {
+      displayVerse(v.text, v.reference);
+      currentVerse = v;
+    });
+    
     verseHistory.appendChild(card);
   });
 }
 
+
 function saveVerse() {
-  if (!currentVerse) return;
-
-  let saved = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-  if (saved.some(v => v.text === currentVerse.text && v.reference === currentVerse.reference)) {
-    alert("Este versículo ya está en tus favoritos.");
+  if (!currentVerse) {
+    alert("No hay versículo seleccionado para guardar.");
     return;
   }
 
-  saved.push(currentVerse);
-  localStorage.setItem("favorites", JSON.stringify(saved));
-  alert("Versículo guardado en favoritos.");
+  try {
+    let saved = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+    
+    const exists = saved.some(v => 
+      v.text === currentVerse.text && v.reference === currentVerse.reference
+    );
+
+    if (exists) {
+      alert("Este versículo ya está en tus favoritos.");
+      return;
+    }
+
+    
+    const verseWithTimestamp = {
+      ...currentVerse,
+      savedAt: new Date().toISOString()
+    };
+
+    saved.unshift(verseWithTimestamp); 
+    localStorage.setItem("favorites", JSON.stringify(saved));
+    
+   
+    saveBtn.textContent = "¡Guardado!";
+    setTimeout(() => {
+      saveBtn.textContent = "💾 Guardar";
+    }, 2000);
+    
+  } catch (error) {
+    console.error('Error al guardar favorito:', error);
+    alert("Error al guardar el versículo.");
+  }
 }
+
 
 function showFavorites() {
-  const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
-  favoritesList.innerHTML = "";
+  try {
+    const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
+    favoritesList.innerHTML = "";
 
-  if (saved.length === 0) {
-    favoritesList.innerHTML = "<p>No tienes versículos guardados.</p>";
-    return;
+    if (saved.length === 0) {
+      favoritesList.innerHTML = "<p class='no-favorites'>No tienes versículos guardados.</p>";
+    } else {
+      saved.forEach((v, index) => {
+        const div = document.createElement("div");
+        div.className = 'favorite-item';
+        
+        const savedDate = v.savedAt ? new Date(v.savedAt).toLocaleDateString() : '';
+        
+        div.innerHTML = `
+          <p class="favorite-text">"${v.text}"</p>
+          <small class="favorite-reference">${v.reference}</small>
+          ${savedDate ? `<small class="saved-date">Guardado: ${savedDate}</small>` : ''}
+          <button class="remove-favorite" data-index="${index}">🗑️</button>
+        `;
+        
+        
+        const removeBtn = div.querySelector('.remove-favorite');
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          removeFavorite(index);
+        });
+        
+       
+        div.addEventListener('click', () => {
+          displayVerse(v.text, v.reference);
+          currentVerse = { text: v.text, reference: v.reference };
+          favoritesModal.style.display = "none";
+        });
+        
+        favoritesList.appendChild(div);
+      });
+    }
+
+    favoritesModal.style.display = "block";
+  } catch (error) {
+    console.error('Error al mostrar favoritos:', error);
+    alert("Error al cargar los favoritos.");
   }
-
-  saved.forEach(v => {
-    const div = document.createElement("div");
-    div.innerHTML = `<p>"${v.text}"</p><small>${v.reference}</small>`;
-    favoritesList.appendChild(div);
-  });
-
-  favoritesModal.style.display = "block";
 }
 
+
+function removeFavorite(index) {
+  try {
+    let saved = JSON.parse(localStorage.getItem("favorites") || "[]");
+    saved.splice(index, 1);
+    localStorage.setItem("favorites", JSON.stringify(saved));
+    showFavorites(); 
+  } catch (error) {
+    console.error('Error al eliminar favorito:', error);
+  }
+}
+
+
 function shareVerse() {
-  if (!currentVerse) return;
+  if (!currentVerse) {
+    alert("No hay versículo seleccionado para compartir.");
+    return;
+  }
 
   const textToShare = `"${currentVerse.text}" - ${currentVerse.reference}`;
 
   if (navigator.share) {
     navigator.share({
-      title: "Palabra del Día",
+      title: "Palabra del Día - Iglesia Santa Lucía",
       text: textToShare,
-    }).catch(err => console.error("Error al compartir:", err));
+      url: window.location.href
+    }).catch(err => {
+      console.error("Error al compartir:", err);
+      fallbackShare(textToShare);
+    });
   } else {
-    prompt("Copia este versículo:", textToShare);
+    fallbackShare(textToShare);
   }
 }
 
-// Event Listeners para tarjetas categoría
-categoryCards.forEach(card => {
-  card.addEventListener("click", () => {
-    const category = card.dataset.category;
-    loadVerseByCategory(category);
+
+function fallbackShare(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Versículo copiado al portapapeles!");
+    }).catch(() => {
+      prompt("Copia este versículo:", text);
+    });
+  } else {
+    prompt("Copia este versículo:", text);
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+  categoryCards.forEach(card => {
+    card.style.opacity = '0.5';
+    card.style.pointerEvents = 'none';
   });
+
+ 
+  await loadVersesFromJSON();
+
+
+  categoryCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const category = card.dataset.category;
+      loadVerseByCategory(category);
+    });
+  });
+
+  
+  fetchRandomVerse();
 });
 
-// Botones eventos
-newVerseBtn.addEventListener("click", fetchRandomVerse);
-saveBtn.addEventListener("click", saveVerse);
-favoritesBtn.addEventListener("click", showFavorites);
-shareBtn.addEventListener("click", shareVerse);
-closeModalBtn.addEventListener("click", () => {
-  favoritesModal.style.display = "none";
-});
 
-// Al cargar, muestra versículo aleatorio API
-fetchRandomVerse();
+if (newVerseBtn) {
+  newVerseBtn.addEventListener("click", fetchRandomVerse);
+}
+
+if (saveBtn) {
+  saveBtn.addEventListener("click", saveVerse);
+}
+
+if (favoritesBtn) {
+  favoritesBtn.addEventListener("click", showFavorites);
+}
+
+if (shareBtn) {
+  shareBtn.addEventListener("click", shareVerse);
+}
+
+if (closeModalBtn) {
+  closeModalBtn.addEventListener("click", () => {
+    favoritesModal.style.display = "none";
+  });
+}
+
+
+if (favoritesModal) {
+  favorites}

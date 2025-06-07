@@ -186,6 +186,7 @@ body {
   background-color: #117d7e;
 }
 
+
 /* Animación al cargar */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -270,6 +271,8 @@ body {
   margin-right: 8px;
   color: #b2dfdb;
 }
+
+
 
 
 
