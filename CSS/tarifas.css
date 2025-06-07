@@ -22,7 +22,7 @@ body {
 
 .encabezado {
   background-color: var(--color-turquesa);
-  padding: 30px 50px; /* más alto */
+  padding: 30px 50px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +44,7 @@ body {
 }
 
 .titulo-sitio {
-  font-size: 2.2rem; /* título más grande */
+  font-size: 2.2rem; 
   color: var(--color-blanco);
   text-transform: uppercase;
   font-weight: bold;
@@ -62,7 +62,7 @@ body {
   padding: 12px 24px;
   border-radius: 30px;
   transition: all 0.3s ease;
-  font-size: 1.2rem; /* MÁS GRANDE */
+  font-size: 1.2rem; 
   font-weight: bold;
   letter-spacing: 0.5px;
 }
@@ -220,7 +220,7 @@ body {
   color: white;
 }
 
-/* Colores individuales al hacer hover */
+
 .footer-redes .facebook:hover {
   background-color: #3b5998;
 }

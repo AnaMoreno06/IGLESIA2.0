@@ -6,7 +6,6 @@
   <title>Iglesia Santa Lucía</title>
   <link rel="stylesheet" href="../CSS/novedades.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 <body>
   <header class="encabezado">
@@ -15,119 +14,189 @@
       <h1 class="titulo-sitio">Iglesia Santa Lucía</h1>
     </div>
     <nav class="navegacion">
-      <a href="../index.html">Inicio</a>
+      <a href="inicio.html">Inicio</a>
       <a href="Novedades.html" class="activo">Novedades</a>
       <a href="Palabra.html">Palabra del dia </a>
       <a href="Tarifas.html">Tarifas</a>
     </nav>
-    
   </header>
 
-   <section class="ministerios">
-  <div class="contenedor-tarjetas">
-    <div class="tarjeta">
-      <img src="../img/Velas.jpg" alt="Servicios Dominicales">
-      <h3>Servicios Dominicales</h3>
-      <p>Únase a nuestros servicios cada domingo para momentos de adoración y enseñanzas que transformarán su vida.</p>
+  <section class="ministerios">
+    <div class="contenedor-tarjetas">
+      <div class="tarjeta">
+        <img src="../img/Velas.jpg" alt="Servicios Dominicales">
+        <h3>Servicios Dominicales</h3>
+        <p>Únase a nuestros servicios cada domingo para momentos de adoración y enseñanzas que transformarán su vida.</p>
+      </div>
+      <div class="tarjeta">
+        <img src="/img/Imagen de WhatsApp 2025-05-09 a las 14.42.13_5fdf3865.jpg" alt="Oración">
+        <h3>Oración</h3>
+        <p>Espacios de oración compartida para fortalecer nuestra fe y conectarnos con Dios.</p>
+      </div>
+      <div class="tarjeta">
+        <img src="/img/Imagen de WhatsApp 2025-05-27 a las 06.53.50_041ce8d1.jpg" alt="Estudios Bíblicos">
+        <h3>Estudios Bíblicos</h3>
+        <p>Profundice en las Escrituras con nuestros estudios semanales diseñados para todas las edades.</p>
+      </div>
+      <div class="tarjeta">
+        <img src="/img/image.png" alt="Familia">
+        <h3>Familia</h3>
+        <p>Programas especiales para fortalecer los lazos familiares y criar a los hijos en un ambiente de fe.</p>
+      </div>
+      <div class="tarjeta">
+        <img src="/img/Imagen de WhatsApp 2025-05-27 a las 06.50.34_db1de6c0.jpg" alt="Música y Alabanza">
+        <h3>Música y Alabanza</h3>
+        <p>Ministerio musical que eleva nuestro corazón en adoración con himnos y voces dedicadas.</p>
+      </div>
+      <div class="tarjeta">
+        <img src="/img/Imagen de WhatsApp 2025-05-27 a las 06.52.45_05a1679d.jpg" alt="Servicio Comunitario">
+        <h3>Servicio Comunitario</h3>
+        <p>Llevando el amor de Cristo a nuestra comunidad a través de obras de ayuda social.</p>
+      </div>
     </div>
-    <div class="tarjeta">
-      <img src="/img/Imagen de WhatsApp 2025-05-09 a las 14.42.13_5fdf3865.jpg" alt="Oración">
-      <h3>Oración</h3>
-      <p>Espacios de oración compartida para fortalecer nuestra fe y conectarnos con Dios.</p>
+  </section>
+  
+
+   <section class="eventos">
+    <h2 class="titulo-seccion">Próximos Eventos</h2>
+
+    <!-- Contenedor para mostrar errores y notificaciones -->
+    
     </div>
-    <div class="tarjeta">
-      <img src="/img/Imagen de WhatsApp 2025-05-27 a las 06.53.50_041ce8d1.jpg" alt="Estudios Bíblicos">
-      <h3>Estudios Bíblicos</h3>
-      <p>Profundice en las Escrituras con nuestros estudios semanales diseñados para todas las edades.</p>
-    </div>
-    <div class="tarjeta">
-      <img src="/img/image.png" alt="Familia">
-      <h3>Familia</h3>
-      <p>Programas especiales para fortalecer los lazos familiares y criar a los hijos en un ambiente de fe.</p>
-    </div>
-    <div class="tarjeta">
-      <img src="/img/Imagen de WhatsApp 2025-05-27 a las 06.50.34_db1de6c0.jpg" alt="Música y Alabanza">
-      <h3>Música y Alabanza</h3>
-      <p>Ministerio musical que eleva nuestro corazón en adoración con himnos y voces dedicadas.</p>
-    </div>
-    <div class="tarjeta">
-      <img src="/img/Imagen de WhatsApp 2025-05-27 a las 06.52.45_05a1679d.jpg" alt="Servicio Comunitario">
-      <h3>Servicio Comunitario</h3>
-      <p>Llevando el amor de Cristo a nuestra comunidad a través de obras de ayuda social.</p>
-    </div>
+
+  <section class="eventos">
+  <div id="firebase-loading">
+    <p>Cargando eventos...</p>
+  </div>
+  
+  <div id="eventos-firebase">
+    <!-- Aquí se cargarán los eventos desde Firebase -->
   </div>
 </section>
 
-<section class="eventos">
-  <h2 class="titulo-seccion">Próximos Eventos</h2>
+  </section>
+  
 
-  <div class="lista-eventos">
+  <!-- Modal para agregar evento -->
+<!-- Modal para editar evento -->
+<!-- Modal para editar evento -->
+<div id="modal-editar-evento" style="
+  display:none; 
+  position: fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  background: rgba(0,0,0,0.5); 
+  z-index:1000; 
+  justify-content:center; 
+  align-items:center;
+  font-family: 'Segoe UI', sans-serif;
+">
+  <div style="
+    background: #fff; 
+    padding: 30px; 
+    border-radius: 16px; 
+    width: 90%; 
+    max-width: 520px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    position: relative;
+  ">
+    <!-- Botón de cerrar -->
+    <button onclick="cerrarModalEditar()" style="
+      position: absolute; 
+      top: 12px; 
+      right: 12px; 
+      background: transparent; 
+      border: none; 
+      font-size: 22px; 
+      cursor: pointer;
+      color: #888;
+    " title="Cerrar">✖️</button>
 
-    <div class="evento">
-      <div class="fecha">
-        <span class="dia">26</span>
-        <span class="mes">Abril</span>
-      </div>
-      <div class="detalle">
-        <h3>Reunión de Jóvenes</h3>
-        <p>Viernes 7:00 PM - Una noche especial de alabanza, juegos y reflexión para todos los jóvenes.</p>
-      </div>
-    </div>
+    <h2 style="margin-bottom: 20px; color: #333;">✏️ Editar Evento</h2>
 
-    <div class="evento">
-      <div class="fecha">
-        <span class="dia">30</span>
-        <span class="mes">Abril</span>
-      </div>
-      <div class="detalle">
-        <h3>Estudio Bíblico Familiar</h3>
-        <p>Miércoles 6:30 PM - Tema especial: "Construyendo hogares de fe en tiempos difíciles".</p>
-      </div>
-    </div>
+    <form id="form-editar-evento">
+      <input type="hidden" name="id" id="editar-id">
 
-    <div class="evento">
-      <div class="fecha">
-        <span class="dia">02</span>
-        <span class="mes">Mayo</span>
-      </div>
-      <div class="detalle">
-        <h3>Día de Servicio Comunitario</h3>
-        <p>Sábado 8:00 AM - Únase a nosotros para servir a nuestra comunidad con alimentos y ropa.</p>
-      </div>
-    </div>
+      <label style="font-weight: 600;">Título:</label><br/>
+      <input type="text" name="titulo" id="editar-titulo" required style="width: 100%; margin-bottom: 14px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"><br/>
 
+      <label style="font-weight: 600;">Descripción:</label><br/>
+      <textarea name="descripcion" id="editar-descripcion" required rows="3" style="width: 100%; margin-bottom: 14px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"></textarea><br/>
+
+      <label style="font-weight: 600;">Fecha:</label><br/>
+      <input type="date" name="fecha" id="editar-fecha" required style="width: 100%; margin-bottom: 14px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"><br/>
+
+      <label style="font-weight: 600;">Hora:</label><br/>
+      <input type="time" name="hora" id="editar-hora" required style="width: 100%; margin-bottom: 20px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;"><br/>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button type="submit" style="
+          background: #007bff; 
+          color: white; 
+          padding: 10px 20px; 
+          border: none; 
+          border-radius: 6px; 
+          font-size: 16px;
+          cursor: pointer;
+        ">💾 Guardar Cambios</button>
+
+        <button type="button" onclick="cerrarModalEditar()" style="
+          background: #ccc; 
+          color: #333; 
+          padding: 10px 20px; 
+          border: none; 
+          border-radius: 6px; 
+          font-size: 16px;
+          cursor: pointer;
+        ">Cancelar</button>
+      </div>
+    </form>
   </div>
-</section>
+</div>
+
+
 
   <footer class="footer">
-  <div class="footer-contenedor">
-    <div class="footer-info">
-      <h3>Iglesia Santa Lucía</h3>
-      <p>Un espacio de encuentro, fe y esperanza para toda la familia.</p>
-    </div>
+    <div class="footer-contenedor">
+      <div class="footer-info">
+        <h3>Iglesia Santa Lucía</h3>
+        <p>Un espacio de encuentro, fe y esperanza para toda la familia.</p>
+      </div>
 
-    <div class="footer-redes">
-      <h4>Síguenos</h4>
-      <div class="iconos-redes">
-        <a href="https://www.facebook.com/profile.php?id=100090503985841&sk=about" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/keylyovad/" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@keylyjohanaovallosdiaz3690" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <div class="footer-redes">
+        <h4>Síguenos</h4>
+        <div class="iconos-redes">
+          <a href="https://www.facebook.com/profile.php?id=100090503985841&sk=about" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/keylyovad/" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@keylyjohanaovallosdiaz3690" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-contacto">
+        <h4>Contáctanos</h4>
+        <p><i class="fas fa-envelope"></i> iglesiasantalucia@gmail.com</p>
+        <p><i class="fas fa-phone"></i> 3105842146</p>
+        <p><i class="fas fa-map-marker-alt"></i>cl 14 #904,Br. Mariano Ospina Pérez,Cúcuta,Norte de santander</p>
       </div>
     </div>
 
-    <div class="footer-contacto">
-      <h4>Contáctanos</h4>
-      <p><i class="fas fa-envelope"></i> iglesiasantalucia@gmail.com</p>
-      <p><i class="fas fa-phone"></i> 3105842146</p>
-      <p><i class="fas fa-map-marker-alt"></i>cl 14 #904,Br. Mariano Ospina Pérez,Cúcuta,Norte de santander</p>
-    </div>
-  </div>
+  </footer>
+
+  <!-- Firebase core -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+
+<!-- Firebase auth (para verificar el usuario) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<!-- Firebase firestore (si usas base de datos) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<!-- Tu script final -->
+<script src="/JS/novedades.js"></script>
 
 
-</footer>
-
-
-<script src="../JS/novedades.js"></script>
 </body>
 </html>
