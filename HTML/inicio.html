@@ -43,12 +43,404 @@
       </div>
     </div>
   </section>
+
+  <!-- Galería de la Iglesia en Tarjetas -->
+  <section class="gallery-section">
+    <div class="gallery-container">
+      <h2 class="section-title">Conoce Nuestra Iglesia</h2>
+      <p class="gallery-subtitle">Descubre los espacios sagrados donde nos reunimos en comunidad</p>
+
+      <div class="gallery-cards-grid">
+        <div class="gallery-card" onclick="openModal('templo')">
+          <div class="card-image templo-bg">
+            <img src="/img/468391602_535941732765955_119028500122460128_n.jpg" alt="templo">
+            <div class="card-overlay">
+              <span class="view-more">Ver más</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Templo Principal</h3>
+            <p>Nuestro espacio sagrado principal con capacidad para 300 personas</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" onclick="openModal('altar')">
+          <div class="card-image altar-bg">
+                  <img src="/img/Imagen de WhatsApp 2025-06-07 a las 18.30.57_3c77e1c9.jpg" alt="templo">
+            <div class="card-overlay">
+              <span class="view-more">Ver más</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Altar Sagrado</h3>
+            <p>El centro de nuestra adoración y celebración eucarística</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" onclick="openModal('salon')">
+          <div class="card-image salon-bg">
+              <img src="/img/Imagen de WhatsApp 2025-06-07 a las 18.26.46_3f1c022d.jpg" alt="templo">
+            <div class="card-overlay">
+              <span class="view-more">Ver más</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Altisimo</h3>
+            <p>Espacio para poder llegar y rezar de marena arrodillada con nuetsro DIOS.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" onclick="openModal('jardin')">
+          <div class="card-image jardin-bg">
+            <div class="card-icon">🌳</div>
+            <div class="card-overlay">
+              <span class="view-more">Ver más</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Jardines</h3>
+            <p>Espacios verdes para reflexión y contemplación</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" onclick="openModal('capilla')">
+          <div class="card-image capilla-bg">
+            <div class="card-icon">🕯️</div>
+            <div class="card-overlay">
+              <span class="view-more">Ver más</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Capilla del Santísimo</h3>
+            <p>Espacio íntimo para oración personal y adoración</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" onclick="openModal('comunidad')">
+          <div class="card-image comunidad-bg">
+            <div class="card-icon">👥</div>
+            <div class="card-overlay">
+              <span class="view-more">Ver más</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>Nuestra Comunidad</h3>
+            <p>Más de 800 familias unidas en fe y amor fraternal</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal para ver imágenes -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div class="modal-body">
+        <div class="modal-image" id="modalImage"></div>
+        <div class="modal-info">
+          <h3 id="modalTitle"></h3>
+          <p id="modalDescription"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendario de Horarios -->
+  <section class="calendar-section">
+    <div class="calendar-container">
+      <h2 class="section-title">Horarios de Celebración</h2>
+      <p class="calendar-subtitle">Únete a nosotros en oración y celebración</p>
+
+      <div class="calendar-grid">
+        <div class="calendar-header">
+          <h3>📅 Calendario Semanal</h3>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-name">Lunes</div>
+            <div class="day-icon">🌅</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time">
+              <span class="time">7:00 AM</span>
+              <span class="service">Misa Matutina</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-name">Martes</div>
+            <div class="day-icon">🌅</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time">
+              <span class="time">7:00 AM</span>
+              <span class="service">Misa Matutina</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-name">Miércoles</div>
+            <div class="day-icon">🌅</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time">
+              <span class="time">7:00 AM</span>
+              <span class="service">Misa Matutina</span>
+            </div>
+            <div class="service-time">
+              <span class="time">7:00 PM</span>
+              <span class="service">Grupo de Oración</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-name">Jueves</div>
+            <div class="day-icon">🌅</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time">
+              <span class="time">7:00 AM</span>
+              <span class="service">Misa Matutina</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-name">Viernes</div>
+            <div class="day-icon">🌅</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time">
+              <span class="time">7:00 AM</span>
+              <span class="service">Misa Matutina</span>
+            </div>
+            <div class="service-time">
+              <span class="time">3:00 PM</span>
+              <span class="service">Vía Crucis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card highlight-saturday">
+          <div class="day-header">
+            <div class="day-name">Sábado</div>
+            <div class="day-icon">🌙</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time">
+              <span class="time">6:00 PM</span>
+              <span class="service">Misa Vespertina</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card highlight-sunday">
+          <div class="day-header">
+            <div class="day-name">Domingo</div>
+            <div class="day-icon">☀️</div>
+          </div>
+          <div class="day-schedule">
+            <div class="service-time featured">
+              <span class="time">8:00 AM</span>
+              <span class="service">Misa Principal</span>
+            </div>
+            <div class="service-time featured">
+              <span class="time">10:00 AM</span>
+              <span class="service">Misa Familiar</span>
+            </div>
+            <div class="service-time">
+              <span class="time">12:00 PM</span>
+              <span class="service">Misa Dominical</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calendar-footer">
+          <div class="special-events">
+            <h4>🎭 Eventos Especiales</h4>
+            <div class="event-item">
+              <span class="event-day">Primer Viernes</span>
+              <span class="event-desc">Adoración al Santísimo - 8:00 PM</span>
+            </div>
+            <div class="event-item">
+              <span class="event-day">Primer Sábado</span>
+              <span class="event-desc">Rosario Mariano - 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    const carouselContainer = document.getElementById('carouselContainer');
+
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      carouselContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === slideIndex);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      goToSlide(currentSlide);
+    }
+
+    // Auto-play carousel
+    setInterval(nextSlide, 5000);
+
+    // Gallery Modal functionality
+    const modalData = {
+      templo: {
+        title: "Templo Principal",
+        description: "Nuestro hermoso templo principal es el corazón de nuestra comunidad religiosa. Con capacidad para 300 personas, este espacio sagrado cuenta con hermosos vitrales, arquitectura colonial y una acústica excepcional que realza cada celebración. Aquí celebramos nuestras misas dominicales y las festividades más importantes del año litúrgico.",
+        icon: "⛪"
+      },
+      altar: {
+        title: "Altar Sagrado",
+        description: "El altar es el centro de nuestra adoración, bellamente decorado con mármol local y ornamentos dorados. Desde aquí se celebra la Eucaristía diariamente, y es el punto focal de todas nuestras ceremonias religiosas. Su diseño combina tradición y modernidad, creando un ambiente de profunda espiritualidad.",
+        icon: "✝️"
+      },
+      salon: {
+        title: "Salón de Eventos",
+        description: "Nuestro amplio salón multiusos es perfecto para celebraciones familiares, bodas, bautizos, primeras comuniones y eventos comunitarios. Con capacidad para 150 personas, cuenta con cocina completa, sistema de sonido profesional y aire acondicionado. Es el lugar ideal para compartir momentos especiales en familia.",
+        icon: "🏛️"
+      },
+      jardin: {
+        title: "Jardines de Contemplación",
+        description: "Los jardines de nuestra iglesia ofrecen un oasis de paz y tranquilidad en medio de la ciudad. Con senderos para caminar, bancos para meditar y una variedad de plantas nativas, este espacio invita a la reflexión personal y la oración silenciosa. Es perfecto para retiros espirituales y momentos de contemplación.",
+        icon: "🌳"
+      },
+      capilla: {
+        title: "Capilla del Santísimo",
+        description: "Nuestra capilla íntima es un espacio dedicado a la adoración personal y la oración contemplativa. Con capacidad para 50 personas, ofrece un ambiente sereno y recogido para quienes buscan un encuentro personal con Dios. Está abierta durante todo el día para oración individual y meditación.",
+        icon: "🕯️"
+      },
+      comunidad: {
+        title: "Nuestra Comunidad",
+        description: "Somos una comunidad vibrante y acogedora de más de 800 familias que comparten la fe y el amor cristiano. Nuestros feligreses participan activamente en grupos de oración, coros, catequesis, obras sociales y actividades pastorales. Aquí encontrarás una segunda familia que te acompañará en tu camino de fe.",
+        icon: "👥"
+      }
+    };
+
+    function openModal(type) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+
+      const data = modalData[type];
+
+      modalImage.innerHTML = data.icon;
+      modalTitle.textContent = data.title;
+      modalDescription.textContent = data.description;
+
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function (event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <footer class="footer">
     <div class="footer-contenedor">
       <div class="footer-info">
         <h3>Iglesia Santa Lucía</h3>
         <p>Un espacio de encuentro, fe y esperanza para toda la familia.</p>
       </div>
+
+
 
       <div class="footer-redes">
         <h4>Síguenos</h4>
