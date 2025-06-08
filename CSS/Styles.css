@@ -129,81 +129,178 @@ body {
   color: #444;
 }
 
-/* Contenedor padre */
 .contenido-principal {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: stretch; /* Las tarjetas tendrán la misma altura */
-}
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-.foto-iglesia,
-.tarjeta-sacerdote {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 30px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
+        .foto-iglesia,
+        .tarjeta-sacerdote {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
 
-/* Imágenes con el mismo tamaño */
-.foto-iglesia img,
-.tarjeta-sacerdote img {
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s;
-}
+        .foto-iglesia img,
+        .tarjeta-sacerdote img {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
 
-.foto-iglesia img:hover,
-.tarjeta-sacerdote img:hover {
-  transform: scale(1.05);
-}
+        .foto-iglesia img:hover,
+        .tarjeta-sacerdote img:hover {
+            transform: scale(1.05);
+        }
 
-/* Etiqueta del templo (equivalente al h3 del sacerdote) */
-.etiqueta {
-  margin-top: 20px;
-  font-weight: bold;
-  color: #159e9f;
-  font-size: 1.25rem; /* Mismo tamaño que h3 */
-}
+        .etiqueta {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #159e9f;
+            font-size: 1.25rem;
+        }
 
-/* Título del sacerdote */
-.tarjeta-sacerdote h3 {
-  margin-top: 20px;
-  color: #159e9f;
-  margin-bottom: 0;
-}
+        .tarjeta-sacerdote h3 {
+            margin-top: 20px;
+            color: #159e9f;
+            margin-bottom: 0;
+        }
 
-/* Texto descriptivo */
-.tarjeta-sacerdote p {
-  font-size: 1rem;
-  color: #333;
-  margin: 15px 0;
-}
+        .tarjeta-sacerdote p {
+            font-size: 1rem;
+            color: #333;
+            margin: 15px 0;
+        }
 
-/* Botón */
-.btn-conocer {
-  display: inline-block;
-  background-color: #159e9f;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  margin-top: 10px;
-}
+        .btn-conocer {
+            display: inline-block;
+            background-color: #159e9f;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
 
-.btn-conocer:hover {
-  background-color: #117d7e;
-}
+        .btn-conocer:hover {
+            background-color: #117d7e;
+        }
+
+        /* Estilos específicos para el carrusel */
+        .carousel-container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-slide {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #159e9f;
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-container:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 1);
+            color: #117d7e;
+        }
+
+        .carousel-nav.prev {
+            left: 10px;
+        }
+
+        .carousel-nav.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background: #159e9f;
+            transform: scale(1.2);
+        }
+
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+        }
 
 /* Galería en Tarjetas */
 .gallery-section {
