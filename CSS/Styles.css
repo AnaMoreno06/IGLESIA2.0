@@ -129,19 +129,34 @@ body {
   color: #444;
 }
 
+/* Contenedor padre */
 .contenido-principal {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch; /* Las tarjetas tendrán la misma altura */
 }
 
+.foto-iglesia,
+.tarjeta-sacerdote {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Imágenes con el mismo tamaño */
 .foto-iglesia img,
 .tarjeta-sacerdote img {
-  width: 300px;
-  height: auto;
-  border-radius: 16px;
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 18px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
 }
@@ -151,32 +166,29 @@ body {
   transform: scale(1.05);
 }
 
+/* Etiqueta del templo (equivalente al h3 del sacerdote) */
 .etiqueta {
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: bold;
-  color: #666;
-}
-
-.tarjeta-sacerdote {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  max-width: 350px;
-  text-align: center;
-}
-
-.tarjeta-sacerdote h3 {
-  margin-top: 10px;
   color: #159e9f;
+  font-size: 1.25rem; /* Mismo tamaño que h3 */
 }
 
+/* Título del sacerdote */
+.tarjeta-sacerdote h3 {
+  margin-top: 20px;
+  color: #159e9f;
+  margin-bottom: 0;
+}
+
+/* Texto descriptivo */
 .tarjeta-sacerdote p {
   font-size: 1rem;
   color: #333;
   margin: 15px 0;
 }
 
+/* Botón */
 .btn-conocer {
   display: inline-block;
   background-color: #159e9f;
@@ -186,6 +198,7 @@ body {
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
 .btn-conocer:hover {
