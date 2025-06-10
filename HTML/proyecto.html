@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>proyecto</title>
+  <link rel="stylesheet" href="/CSS/proyecto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="encabezado">
+    <div class="contenedor-logo">
+      <img src="../img/logo.jpg" alt="Logo Iglesia" class="logo" />
+      <h1 class="titulo-sitio">Iglesia Santa Lucía</h1>
+    </div>
+    <nav class="navegacion">
+      <a href="inicio.html" class="activo">Inicio</a>
+      <a href="Novedades.html">Novedades</a>
+      <a href="Palabra.html">Palabra del dia </a>
+      <a href="Tarifas.html">Tarifas</a>
+      <a href="Tarifas.html">proyecto</a>
+    </nav>
+  </header>
+  <section class="inicio-seccion">
+    <div class="fondo-overlay">
+      <h1 class="titulo-bienvenida">"Donde dos o más se reúnen en mi nombre, allí estoy yo." — Mateo 18:20</h1>
+      <p class="mensaje-principal">Te damos la bienvenida a la Iglesia Santa Lucía. Un lugar de paz, esperanza y
+        comunidad.</p>
+
+     
+    <section class="recursos-seccion">
+    <div class="tarjetas-contenedor">
+        
+        <!-- Tarjeta PDF -->
+        <div class="tarjeta">
+            <div class="icono-tarjeta pdf">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <h3>Manual del contenido</h3>
+            <p>Descarga nuestro manual para que pueda tener una mejro experiencia.</p>
+            <a href="https://drive.google.com/file/d/1XO5ZcOF09e1x35tJAjqEfwoO532SFi-h/view?usp=drive_link" target="_blank" class="boton-tarjeta">
+                <i class="fas fa-download"></i> Ver PDF
+            </a>
+        </div>
+
+        <!-- Tarjeta Video YouTube -->
+        <div class="tarjeta">
+            <div class="icono-tarjeta video">
+                <i class="fab fa-youtube"></i>
+            </div>
+            <h3>video de explicacion</h3>
+            <p>Mira el video del paso a paso de como funciona nuestra aplicacion .</p>
+            <a href="AQUI_VA_TU_LINK_DE_YOUTUBE" target="_blank" class="boton-tarjeta">
+                <i class="fas fa-play"></i> Ver Video
+            </a>
+        </div>
+
+    </div>
+</section>
+      </main>
+
+      <script>
+
+       function toggleFullscreen() {
+    const video = document.querySelector('video');
+    if (video) {
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+        }
+    }
+}
+
+// Animación suave al cargar las tarjetas
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 200);
+            }
+        });
+    });
+
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+    });
+});
+
+      </script>
+
+
+      <footer class="footer">
+        <div class="footer-contenedor">
+          <div class="footer-info">
+            <h3>Iglesia Santa Lucía</h3>
+            <p>Un espacio de encuentro, fe y esperanza para toda la familia.</p>
+          </div>
+
+
+
+          <div class="footer-redes">
+            <h4>Síguenos</h4>
+            <div class="iconos-redes">
+              <a href="https://www.facebook.com/profile.php?id=100090503985841&sk=about" class="facebook"
+                aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/keylyovad/" class="instagram" aria-label="Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://www.youtube.com/@keylyjohanaovallosdiaz3690" class="youtube" aria-label="YouTube"><i
+                  class="fab fa-youtube"></i></a>
+              <a href="#" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-contacto">
+            <h4>Contáctanos</h4>
+            <p><i class="fas fa-envelope"></i> iglesiasantalucia@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 3105842146</p>
+            <p><i class="fas fa-map-marker-alt"></i>cl 14 #904,Br. Mariano Ospina Pérez,Cúcuta,Norte de santander</p>
+          </div>
+        </div>
+
+
+      </footer>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
